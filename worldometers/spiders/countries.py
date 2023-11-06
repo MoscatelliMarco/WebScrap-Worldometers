@@ -1,6 +1,5 @@
 import scrapy
 import pandas as pd
-import numpy as np
 
 class CountriesSpider(scrapy.Spider):
     name = "countries"
@@ -51,7 +50,7 @@ class CountriesSpider(scrapy.Spider):
         df = df.pivot(index='year', columns='country_name', values='population')
 
         # Remove all , from populations
-        df = df.applymap(lambda x: x.replace(',', '') if isinstance(x, str) else x)
+        df = df.map(lambda x: x.replace(',', '') if isinstance(x, str) else x)
 
         # Save this DataFrame to a CSV file
         df.to_csv("population_data.csv")
