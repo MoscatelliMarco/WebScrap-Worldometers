@@ -47,8 +47,6 @@ class CountriesSpider(scrapy.Spider):
         # Convert the list of dictionaries into a DataFrame
         df = pd.DataFrame(self.data)
 
-        print(self.data)
-
         # Pivot the DataFrame to have countries as columns, year as index, and population as values
         df = df.pivot(index='year', columns='country_name', values='population')
 
